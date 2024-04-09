@@ -7,12 +7,14 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { Registration } from './registration/registration.component';
 import { AgeCheckDirective } from './directive/age-check.directive';
+import { PhoneMaskDirective } from './directive/phone-mask.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     Registration,
-    AgeCheckDirective
+    AgeCheckDirective,
+    PhoneMaskDirective
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
