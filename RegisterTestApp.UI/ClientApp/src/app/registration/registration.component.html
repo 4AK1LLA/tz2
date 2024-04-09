@@ -1,29 +1,34 @@
-
 <div class="card w-75">
   <div class="card-body">
     <form class="form-inline">
       <div class="form-group">
         <label for="name">First Name</label>
-        <input type="text" class="form-control" id="firstName"
-               [(ngModel)]="model.firstName" name="firstName">
+        <input type="text" class="form-control" id="firstName" [(ngModel)]="model.firstName" name="firstName">
       </div>
 
       <div class="form-group">
         <label for="name">Last Name</label>
-        <input type="text" class="form-control" id="lastName"
-               [(ngModel)]="model.lastName" name="lastName">
+        <input type="text" class="form-control" id="lastName" [(ngModel)]="model.lastName" name="lastName">
       </div>
 
       <div class="form-group">
         <label for="name">Email</label>
-        <input type="text" class="form-control" id="email"
-               [(ngModel)]="model.email" name="email">
+        <input type="text" class="form-control" id="email" [(ngModel)]="model.email" name="email">
       </div>
+
+      <div class="form-group">
+        <label for="dateOfBirth">Date of Birth</label>
+        <input id="dateOfBirth" name="dateOfBirth" type="date" class="form-control"
+          [class.is-invalid]="dateOfBirth.invalid" [(ngModel)]="model.dateOfBirth" appAgeCheck #dateOfBirth="ngModel">
+        <div class="invalid-feedback">
+          You should be at least 18 years old to use this app.
+        </div>
+      </div>
+
       <div class="form-group">
         <label for="name">Phone number</label>
         <div class="input-group mb-1" *ngFor="let phone of model.phoneNumbers; let i = index;trackBy:trackByIndex;">
-          <input type="text" class="form-control mr-2"
-                 [(ngModel)]="model.phoneNumbers[i]" name="phoneNumber{{i}}">
+          <input type="text" class="form-control mr-2" [(ngModel)]="model.phoneNumbers[i]" name="phoneNumber{{i}}">
           <button type="button" (click)="this.removePhone(i)" class="btn btn-warn">
             <i class="bi bi-x-circle"></i>
           </button>
@@ -34,7 +39,7 @@
       </div>
 
       <div class="form-group mt-3">
-        <button class="btn btn-primary" (click)="this.save()">Save</button>
+        <button class="btn btn-primary" (click)="this.save()" [disabled]="dateOfBirth.invalid">Save</button>
       </div>
     </form>
   </div>

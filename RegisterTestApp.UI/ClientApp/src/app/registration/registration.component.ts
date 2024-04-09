@@ -1,5 +1,6 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-registration',
@@ -9,10 +10,14 @@ export class Registration {
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
   model = new RegistrationModel();
+  @ViewChild('dateOfBirth') dateOfBirthControl?: NgModel;
+
   save = () => {
-    this.http.post<RegistrationModel>(this.baseUrl + 'register', this.model).subscribe(result => {
-      console.log(result);
-    }, error => console.error(error));
+    if (this.dateOfBirthControl!.valid) {
+      this.http.post<RegistrationModel>(this.baseUrl + 'register', this.model).subscribe(result => {
+        console.log(result);
+      }, error => console.error(error));
+    }
   }
   addPhone = () => {
     this.model.phoneNumbers.push('');
@@ -28,4 +33,5 @@ class RegistrationModel {
   lastName: string = '';
   email: string = '';
   phoneNumbers: string[] = [''];
+  dateOfBirth: string = '';
 }

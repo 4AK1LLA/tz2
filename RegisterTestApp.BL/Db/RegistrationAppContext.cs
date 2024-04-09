@@ -10,6 +10,7 @@ namespace RegisterTestApp.Service.Db
 
         public RegistrationAppContext()
         {
+            // C:\Users\{user}\AppData\Local
             var folder = Environment.SpecialFolder.LocalApplicationData;
             var path = Environment.GetFolderPath(folder);
             DbPath = System.IO.Path.Join(path, "database.db");

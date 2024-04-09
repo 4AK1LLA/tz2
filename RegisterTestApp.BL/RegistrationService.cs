@@ -17,6 +17,12 @@ namespace RegisterTestApp.Service
 
         public async Task<int> AddRequest(RegistrationModel model)
         {
+            // to prevent exceptions
+            if (string.IsNullOrEmpty(model.DateOfBirth))
+            {
+                model.DateOfBirth = "1999-01-01";
+            }
+
             var data = _mapper.Map<RegistrationRequest>(model);
 
             await _appContext.AddAsync(data);

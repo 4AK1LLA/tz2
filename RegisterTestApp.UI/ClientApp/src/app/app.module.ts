@@ -6,11 +6,13 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { Registration } from './registration/registration.component';
+import { AgeCheckDirective } from './directive/age-check.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    Registration
+    Registration,
+    AgeCheckDirective
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
